@@ -26,7 +26,7 @@ visitors as (
         source,
         medium,
         campaign,
-        count(wd.visitor_id) as visitors_count
+        count(visitor_id) as visitors_count
     from without_double
     group by 1, 2, 3, 4
 ),
@@ -93,4 +93,3 @@ left join
         and t.medium = a.utm_medium
         and t.campaign = a.utm_campaign
 order by 9 desc nulls last, 1, 5 desc, 2, 3, 4
-limit 15
