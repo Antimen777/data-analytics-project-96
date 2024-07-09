@@ -65,11 +65,9 @@ ads as (
 
 --Итоговая таблица
 select
-    t.last_visit as visit_date,
+    coalesce(t.last_visit, a.campaign_date) as visit_date,
     v.visitors_count,
-    t.source as utm_source,
-    t.medium as utm_medium,
-    t.campaign as utm_campaign,
+    coalesce(t.source, a.utm_source) as utm_source,
     a.total_cost,
     t.leads_count,
     t.purchases_count,
@@ -159,11 +157,11 @@ ads as (
 )
 
 select
-    t.last_visit as visit_date,
+    coalesce(t.last_visit, a.campaign_date) as visit_date,
     v.visitors_count,
-    t.source as utm_source,
-    t.medium as utm_medium,
-    t.campaign as utm_campaign,
+    coalesce(t.source, a.utm_source) as utm_source,
+    coalesce(t.medium, a.utm_medium) as utm_medium,
+    coalesce(t.campaign, a.utm_campaign) as utm_campaign,
     a.total_cost,
     t.leads_count,
     t.purchases_count,
